@@ -34,12 +34,51 @@ job_desc = st.text_area('Copy Paste the Job Description from LinkedIn or any Job
                         max_chars=10000)
 
 
+options = ["ATS Score", "Chance of Selection", "Keywords", "Tailor Project as per JD", "SWOT Analysis", "Tips for Improvement", "Tailor made Resume as per JD"]
+
+
+st.markdown(
+    """
+    <style>
+        div[data-testid="stRadio"] label {
+            width: 300px;
+            height: 120px;
+            display: inline-block;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            width: 120px; /* Adjust box width */
+        }
+        div[data-testid="stRadio"] label:hover {
+            background: #4CAF50;
+            color: white;
+        }
+        div[data-testid="stRadio"] input {
+            display: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Display the radio button options
+st.subheader("What Service to do?")
+selected_box = st.radio(label="",options=options,index=None,horizontal=True,label_visibility='hidden')
+
+# Show selected box
+if selected_box:
+    st.success(f"You selected: {selected_box}")
+
 # Submit button
 submit = st.button("Submit")
 
 
 if submit:
-    st.markdown(profile(user_profile=user_profile,job_desc = job_desc))
+    st.markdown(profile(user_profile=user_profile,job_desc = job_desc,service=selected_box))
 else:
     st.markdown("")
 
