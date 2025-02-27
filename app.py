@@ -3,6 +3,7 @@ import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
 import google.generativeai as genai
+import requests
 
 
 from pdf import read_pdf
@@ -34,15 +35,15 @@ job_desc = st.text_area('Copy Paste the Job Description from LinkedIn or any Job
                         max_chars=10000)
 
 
-options = ["ATS Score", "Chance of Selection", "Keywords", "Tailor Project as per JD", "SWOT Analysis", "Tips for Improvement", "Tailor made Resume as per JD"]
+options = ["ATS Score", "Chance of Selection", "Keywords", "Tailor Project as per JD", "Improvement Tips", "Tailor Resume"]
 
 
 st.markdown(
     """
     <style>
         div[data-testid="stRadio"] label {
-            width: 300px;
-            height: 120px;
+            width: 200px;
+            height: 100px;
             display: inline-block;
             border: 2px solid #4CAF50;
             border-radius: 10px;
@@ -51,7 +52,7 @@ st.markdown(
             text-align: center;
             cursor: pointer;
             transition: background 0.3s, color 0.3s;
-            width: 120px; /* Adjust box width */
+            
         }
         div[data-testid="stRadio"] label:hover {
             background: #4CAF50;
